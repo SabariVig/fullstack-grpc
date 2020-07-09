@@ -12,9 +12,20 @@ import (
 	"net/http"
 )
 
+func unartInceptor(
+	ctx context.Context,
+	req interface{},
+	info *grpc.UnaryServerInfo,
+	handler grpc.UnaryHandler,
+) (resp interface{}, err error) {
+	log.Print("inceptor hit", info.FullMethod)
+	return handler(ctx, req)
+
+}
+
 func cgrpc() {
-	lis, err := net.Listen("tcp", ":7899")
-	grpcServer := grpc.NewServer()
+	lis, err := net.Listen("tcp", ":9090")
+	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(unartInceptor))
 	if err != nil {
 		log.Fatal("Failed to listen", err)
 	}
@@ -45,29 +56,9 @@ func rest() {
 	}
 	http.ListenAndServe(":8888", mux)
 
-	//s := movie.Server{}
-	////ercc := movie.RegisterMovieServiceHandlerFromEndpoint(
-	//ctx,
-	//mux,
-	//newMovie(),
-	//[]grpc.DialOption{grpc.WithInsecure()},
-	//)
-
-	//if err != nil {
-	//log.Fatal(err)
-	//}
-
-	//s, err := net.Listen("tcp", "0.0.0.0:8532")
-	//if err != nil {
-	//log.Fatal("Failed To Listen on port")
-	//}
-
-	//if err := http.Serve(s, mux); err != nil {
-	//log.Fatal("Failed to start HTTP", err)
-	//}
 }
 
 func main() {
 	cgrpc()
-	go rest()
+	//	go rest()
 }
