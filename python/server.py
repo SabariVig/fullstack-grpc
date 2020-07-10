@@ -10,7 +10,7 @@ def lol():
 
 class Listner(movie_pb2_grpc.MovieServiceServicer):
     def GetMovie(self, request, context):
-        print(request)
+        print(request,context)
         return movie_pb2.Movie(id=request.id,name="haha",rating="4")
 def serve():
     header_validator = InceptorValidator(grpc.StatusCode.UNAUTHENTICATED,"Access Denied")

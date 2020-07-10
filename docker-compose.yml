@@ -1,0 +1,10 @@
+version: "3.8"
+services: 
+  go:
+    image: grpc-go
+    ports: 
+      - "9090:9090"
+  envoy:
+    build: .
+    ports: 
+      - "8080:8080"
