@@ -11,6 +11,9 @@ def lol():
 class Listner(movie_pb2_grpc.MovieServiceServicer):
     def GetMovie(self, request, context):
         print(request,context)
+        if request.id %2 == 0:
+            context.set_code(grpc.StatusCode.UNAUTHENTICATED)
+            return movie_pb2.Movie()
         return movie_pb2.Movie(id=request.id,name="haha",rating="4")
 def serve():
     header_validator = InceptorValidator(grpc.StatusCode.UNAUTHENTICATED,"Access Denied")

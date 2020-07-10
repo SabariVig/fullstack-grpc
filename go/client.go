@@ -9,7 +9,7 @@ import (
 )
 
 func cgrpc() {
-	lis, err := net.Listen("tcp", ":7899")
+	lis, err := net.Listen("tcp", ":9090")
 	if err != nil {
 		log.Fatal("Failed to listen", err)
 	}
