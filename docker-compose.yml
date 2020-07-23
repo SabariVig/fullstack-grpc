@@ -1,7 +1,7 @@
 version: "3.8"
 services: 
   go:
-    image: grpc-go
+    build: ./go/
     ports: 
       - "9090:9090"
   envoy:
