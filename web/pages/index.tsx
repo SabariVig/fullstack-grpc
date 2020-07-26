@@ -1,9 +1,9 @@
-import { grpc } from "@improbable-eng/grpc-web";
-import { NodeHttpTransport } from "@improbable-eng/grpc-web-node-http-transport";
+import { grpc } from '@improbable-eng/grpc-web';
+import { NodeHttpTransport } from '@improbable-eng/grpc-web-node-http-transport';
 
-import Index2 from "./Index2";
-import { useFetch } from "../lib/effects/useFetch";
-import { useState } from "react";
+import Index2 from './Index2';
+import { useFetch } from '../lib/effects/useFetch';
+import { useState } from 'react';
 
 /* interface da { */
 /*   id: number; */
